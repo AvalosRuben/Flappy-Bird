@@ -2,8 +2,8 @@ import pygame
 
 pygame.init()
 
-screen_width = 800
-screen_height = 600
+screen_width = 1250
+screen_height = 800
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Flappy Bird ;)")
 
@@ -11,8 +11,9 @@ pygame.display.set_caption("Flappy Bird ;)")
 speed = 0
 object_x = screen_width//2
 object_y = screen_height//2
-gravity = 5
+gravity = 10
 dt = 0.2 #measure of the time interval between each update of the simulation's state
+jump_force = -45
 
 
 done = False
@@ -21,9 +22,12 @@ clock = pygame.time.Clock() #to control how fast the display refreshes
 
 while not done:
     for event in pygame.event.get(): #user did something
-        if event.type == pygame.QUIT:
+        if event.type == pygame.QUIT:#quit the game
             
             done = True
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                speed = jump_force
 
     #Game logic
     speed = speed + gravity*dt
