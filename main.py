@@ -1,7 +1,9 @@
 import pygame
+from obstacle import Obstacle
 
 pygame.init()
 
+#screen
 screen_width = 1250
 screen_height = 800
 screen = pygame.display.set_mode((screen_width, screen_height))
@@ -15,6 +17,10 @@ gravity = 10
 dt = 0.2 #measure of the time interval between each update of the simulation's state
 jump_force = -45
 
+#obstacles
+obstacle_x = screen_width
+obstacle_y = screen_height
+obstacle_one = Obstacle (obstacle_x, obstacle_y, 20)
 
 done = False
 
@@ -39,6 +45,7 @@ while not done:
     #Drawing logic
     screen.fill((255,255,255)) #just white color
     pygame.draw.circle(screen,(0,0,255),(object_x,int(object_y)), 50)
+    pygame.draw.rect(screen, (0,255,0),(obstacle_x, obstacle_y),)
 
     #update the screen
     pygame.display.flip()
